@@ -20,7 +20,7 @@ const LoginForm = () => {
         toast.success("Login Successfully", { id: 1 });
         navigate("/home");
       }else{
-        toast.success(data.massage, { id: 1 });
+        toast.error(data.massage, { id: 1 });
       }
     },
   });
