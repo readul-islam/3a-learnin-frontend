@@ -1,10 +1,14 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { intailValue } from "./constant";
+
 const LoginForm = () => {
+  
+  const [show, setShow] = useState(false)
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: intailValue,
@@ -34,6 +38,7 @@ const LoginForm = () => {
           >
             Your email
           </label>
+         
           <input
             type="email"
             name="email"
@@ -43,6 +48,8 @@ const LoginForm = () => {
             placeholder="name@company.com"
             required
           />
+      
+       
         </div>
         <div>
           <label
@@ -51,8 +58,9 @@ const LoginForm = () => {
           >
             Your password
           </label>
-          <input
-            type="password"
+         <div className="relative">
+         <input 
+            type={`${show? 'text':'password'}`}
             name="password"
             id="password"
             {...formik.getFieldProps("password")}
@@ -60,6 +68,11 @@ const LoginForm = () => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             required
           />
+           {!show ?  <AiFillEyeInvisible onClick={()=>setShow(true)} className="text-black absolute cursor-pointer right-2  top-2" size={20}/> :
+          <AiFillEye onClick={()=> setShow(false)} className="text-black absolute right-2 cursor-pointer top-2" size={20}/> 
+          
+         }
+         </div>
         </div>
         <div className="flex items-start">
           <div className="flex items-start">

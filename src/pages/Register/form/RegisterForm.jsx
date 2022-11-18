@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { registerSchema } from "../Schema";
 import { intailValue } from "./constant";
+
 const RegisterForm = () => {
   let navigate = useNavigate();
-
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const formik = useFormik({
     initialValues: intailValue,
     validationSchema: registerSchema,
@@ -60,8 +63,9 @@ const RegisterForm = () => {
           >
             password
           </label>
+          <div className="relative">
           <input
-            type="password"
+            type={`${showPassword? 'text':'password'}`}
             name="password"
             id="password"
             {...formik.getFieldProps("password")}
@@ -69,6 +73,11 @@ const RegisterForm = () => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             required
           />
+            {!showPassword ?  <AiFillEyeInvisible onClick={()=>setShowPassword(true)} className="text-black absolute cursor-pointer right-2  top-2" size={20}/> :
+          <AiFillEye onClick={()=> setShowPassword(false)} className="text-black absolute right-2 cursor-pointer top-2" size={20}/> 
+          
+         }
+          </div>
           {formik.touched.password && formik.errors.password ? (
             <small className="text-xs text-red-600 font-semibold">
               {formik.errors.password}
@@ -82,8 +91,9 @@ const RegisterForm = () => {
           >
             Confirm password
           </label>
-          <input
-            type="password"
+         <div className="relative">
+         <input
+             type={`${showConfirmPassword? 'text':'password'}`}
             name="confirmPassword"
             id="confirmPassword"
             {...formik.getFieldProps("confirmPassword")}
@@ -91,6 +101,11 @@ const RegisterForm = () => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             required
           />
+          {!showConfirmPassword ?  <AiFillEyeInvisible onClick={()=>setShowConfirmPassword(true)} className="text-black absolute cursor-pointer right-2  top-2" size={20}/> :
+          <AiFillEye onClick={()=> setShowConfirmPassword(false)} className="text-black absolute right-2 cursor-pointer top-2" size={20}/> 
+          
+         }
+         </div>
           {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
             <small className="text-xs text-red-600 font-semibold">
               {formik.errors.confirmPassword}
