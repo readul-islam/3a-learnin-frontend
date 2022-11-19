@@ -15,13 +15,14 @@ const Login = () => {
         }}
         className="hero min-h-screen  "
       >
+        <div className="hero-overlay  bg-opacity-70 flex items-center justify-center">
         <div className="hero-content flex-col lg:flex-row-reverse ">
-          <div className="text-center lg:text-left lg:px-8 px-0 text-black">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6  text-2xl font-semibold ">
+          <div className="text-center lg:text-left lg:px-8 px-0 text-white">
+            <h1 className="text-2xl md:text-5xl font-bold">Login now!</h1>
+            <p className="py-6 text-md  md:text-2xl font-semibold ">
               Achieve Professional Excellence With 1000+ Globally-acclaimed
             </p>
-            <p className="  text-xl  ">
+            <p className="  text-sm  md:text-xl    ">
               3a Learning solutions India Pvt. Limited (ISO 9001:2015 Certified)
               was founded in August 2014. We are the industry leader in
               technology and people management training and consultancy.
@@ -34,6 +35,7 @@ const Login = () => {
               <SocialLogin />
             </div>
           </div>
+        </div>
         </div>
       </div>
     </>
